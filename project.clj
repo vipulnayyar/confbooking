@@ -10,4 +10,8 @@
   :ring {:handler confbooking.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring-mock "0.1.5"]]}})
+                        [ring-mock "0.1.5"]
+                        [mysql/mysql-connector-java "5.1.32"]
+                        [org.clojure/java.jdbc "0.4.1"]
+                        [org.clojure/data.json "0.2.6"]
+                        [korma "0.4.2"]]}})
