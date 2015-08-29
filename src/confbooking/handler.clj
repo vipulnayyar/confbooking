@@ -19,8 +19,14 @@
 
 (defn get-room [request]
     (println request)
+    (println ["select * from meetings where room_id ="((request :params) :room)])
+    (pr-str (json/write-str (j/query mysql-db ["select * from rooms where room_id =?"((request :params) :room)]) ))	)
 
-    (pr-str (json/write-str (j/query mysql-db ["select * from rooms where room_id = ?" (request :query-params :room)]) )))
+
+(defn book_room [request]
+    (println request)
+    (println ["insert into rooms where room_id ="((request :params) :room)])
+    (pr-str (json/write-str (j/query mysql-db ["select * from rooms where room_id =?"((request :params) :room)]) ))	)
 
 
 (defroutes app-routes
@@ -28,6 +34,7 @@
   (GET "/api/get_rooms" [] get-rooms)
   (GET "/api/get_room" [] get-room)
   (GET "/book_room" [] (io/resource "public/book_room.html"))	
+  (POST "/book_room" [] book_room)	
   (route/resources "/")
   (route/not-found "Not Found"))
 
