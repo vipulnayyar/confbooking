@@ -19,6 +19,7 @@
 
 (defn get-room [request]
     (println request)
+    (let start (request))
     (println ["select * from meetings where room_id ="((request :params) :room)])
     (pr-str (json/write-str (j/query mysql-db ["select * from rooms where room_id =?"((request :params) :room)]) ))	)
 
